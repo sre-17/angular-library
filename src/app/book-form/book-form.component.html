@@ -1,0 +1,31 @@
+<h2 class="text-center">Add Book</h2>
+<form action="">
+  <mat-form-field class="form-group w-100">
+    <mat-label>Book Title</mat-label>
+    <input matInput type="text" />
+  </mat-form-field>
+
+  <mat-form-field class="form-group w-100">
+    <mat-label>Book Author</mat-label>
+    <input matInput type="text" />
+  </mat-form-field>
+
+  <mat-form-field class="form-group w-100">
+    <mat-label>Total Pages</mat-label>
+    <input matInput type="text" />
+  </mat-form-field>
+
+  <mat-label>Reading Status:</mat-label>
+  <mat-radio-group
+    aria-label="Select an option"
+    color="primary"
+    class="d-flex flex-column"
+  >
+    <mat-radio-button value="true">Read</mat-radio-button>
+    <mat-radio-button value="false">Not read/Reading</mat-radio-button>
+  </mat-radio-group>
+
+  <button mat-raised-button color="primary" class="mx-auto d-block">
+    Done
+  </button>
+</form>

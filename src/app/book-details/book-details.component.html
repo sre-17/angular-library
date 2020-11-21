@@ -1,0 +1,7 @@
+<div class="d-flex flex-column align-items-center">
+  <h4>{{ book.title }}</h4>
+  <p>Author: {{ book.author }}</p>
+  <p>Pages: {{ book.pages }}</p>
+  <p *ngIf="book.reading_status">Reading Status: Read/Completed</p>
+  <p *ngIf="!book.reading_status">Reading Status: Not Read/Reading</p>
+</div>
