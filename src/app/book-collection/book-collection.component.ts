@@ -12,9 +12,7 @@ export class BookCollectionComponent implements OnInit {
   constructor(private bookService: BookService) {}
 
   ngOnInit(): void {
-    this.getBooks();
-  }
-  getBooks(): void {
-    this.bookService.getBooks().subscribe((books) => (this.Books = books));
+    this.bookService.getBooks();
+    this.bookService.Books.subscribe((books) => (this.Books = books));
   }
 }

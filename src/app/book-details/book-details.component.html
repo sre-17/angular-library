@@ -1,7 +1,23 @@
-<div class="d-flex flex-column align-items-center">
-  <h4>{{ book.title }}</h4>
-  <p>Author: {{ book.author }}</p>
-  <p>Pages: {{ book.pages }}</p>
-  <p *ngIf="book.reading_status">Reading Status: Read/Completed</p>
-  <p *ngIf="!book.reading_status">Reading Status: Not Read/Reading</p>
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">{{ book.title }}</h4>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Author: {{ book.author }}</li>
+    <li class="list-group-item">Pages: {{ book.pages }}</li>
+    <li class="list-group-item" *ngIf="book.reading_status">
+      Reading Status: Completed
+    </li>
+    <li class="list-group-item" *ngIf="!book.reading_status">
+      Reading Status: Not Read/Reading
+    </li>
+  </ul>
+  <div class="card-body">
+    <div>
+      <button class="btn btn-success" (click)="edit()">Edit</button>
+      <button class="btn btn-danger delete-btn" (click)="delete()">
+        Delete!
+      </button>
+    </div>
+  </div>
 </div>

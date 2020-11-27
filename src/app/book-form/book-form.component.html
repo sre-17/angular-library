@@ -1,18 +1,20 @@
-<h2 class="text-center">Add Book</h2>
+<h2 class="text-center" *ngIf="!update">Add Book</h2>
+<h2 class="text-center" *ngIf="update">Update Book</h2>
+
 <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
   <mat-form-field class="form-group w-100">
     <mat-label>Book Title</mat-label>
-    <input matInput type="text" name="title" />
+    <input matInput type="text" name="title" [(ngModel)]="formValues.title" />
   </mat-form-field>
 
   <mat-form-field class="form-group w-100">
     <mat-label>Book Author</mat-label>
-    <input matInput type="text" name="author" />
+    <input matInput type="text" name="author" [(ngModel)]="formValues.author" />
   </mat-form-field>
 
   <mat-form-field class="form-group w-100">
     <mat-label>Total Pages</mat-label>
-    <input matInput type="text" name="pages" />
+    <input matInput type="text" name="pages" [(ngModel)]="formValues.pages" />
   </mat-form-field>
 
   <mat-label>Reading Status:</mat-label>
@@ -20,12 +22,27 @@
     aria-label="Select an option"
     color="primary"
     class="d-flex flex-column"
+    name="reading_status"
+    ngModel
   >
     <mat-radio-button value="true">Read</mat-radio-button>
     <mat-radio-button value="false">Not read/Reading</mat-radio-button>
   </mat-radio-group>
 
-  <button mat-raised-button color="primary" class="mx-auto d-block">
-    Done
+  <button
+    mat-raised-button
+    color="primary"
+    class="mx-auto d-block"
+    *ngIf="!update"
+  >
+    Add
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    class="mx-auto d-block"
+    *ngIf="update"
+  >
+    Update
   </button>
 </form>
