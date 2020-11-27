@@ -1,10 +1,11 @@
 # AngularLibrary
 
 Library has the following features:
-Add Book
-Edit Book
-Delete Book
-View Books
+
+- Add Book
+- Edit Book
+- Delete Book
+- View Books
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.6.
 
