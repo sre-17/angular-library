@@ -36,6 +36,13 @@ export class InMemoryDataService implements InMemoryDbService {
         author: 'Joseph Conrad',
         reading_status: false,
       },
+      {
+        id: 15,
+        title: 'Sample Book',
+        pages: 194,
+        author: 'Sample Author',
+        reading_status: false,
+      },
     ];
     return { books };
   }

@@ -10,12 +10,11 @@ import { FormValuesService } from '../form-values.service';
   styleUrls: ['./book-form.component.scss'],
 })
 export class BookFormComponent implements OnInit {
-  formValues: Book = {
+  formValues = {
     title: '',
     author: '',
     pages: 0,
     reading_status: false,
-    id: 0,
   };
   update = false;
   constructor(
@@ -36,10 +35,10 @@ export class BookFormComponent implements OnInit {
       this.formValues.reading_status = false;
     }
     if (this.update) {
-      this.bookService.updateBooks(this.formValues);
+      this.bookService.updateBooks(this.formValues as Book);
       this.update = false;
     } else {
-      this.bookService.addBook(this.formValues);
+      this.bookService.addBook(this.formValues as Book);
     }
     f.reset();
   }

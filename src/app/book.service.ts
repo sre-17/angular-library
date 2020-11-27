@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Book } from './book';
-import { map, tap, catchError } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -35,15 +35,17 @@ export class BookService {
   }
 
   addBook(book: Book): void {
+    console.log(book);
     this.http
       .post<Book>(this.booksUrl, book, this.httpOptions)
-      .pipe(
-        tap((newBook: Book) =>
-          console.log(`Book with id:${newBook.reading_status}`)
-        ),
-        catchError(this.handleError<Book>('addBook'))
-      )
+      // .pipe(
+      //   tap((newBook: Book) =>
+      //     console.log(`Book with id:${newBook.reading_status}`)
+      //   ),
+      //   catchError(this.handleError<Book>('addBook'))
+      // )
       .subscribe((newBook: Book) => {
+        console.log(newBook);
         this.bookArray.push(newBook);
         this.Books.next(this.bookArray);
       });
