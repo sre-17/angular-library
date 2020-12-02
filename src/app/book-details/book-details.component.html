@@ -15,7 +15,7 @@
   <div class="card-body">
     <div>
       <!-- <button class="btn btn-success" (click)="edit()">Edit</button> -->
-      <button class="btn btn-danger delete-btn" (click)="delete()">
+      <button *ngIf="del" class="btn btn-danger delete-btn" (click)="delete()">
         Delete!
       </button>
     </div>

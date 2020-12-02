@@ -11,7 +11,7 @@ import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
   styleUrls: ['./book-form.component.scss'],
 })
 export class BookFormComponent implements OnInit {
-  formValues = {
+  formValues: any = {
     title: '',
     author: '',
     pages: 0,
@@ -36,6 +36,7 @@ export class BookFormComponent implements OnInit {
   ngOnInit(): void {
     this.subcription = this.formValuesService.formValues.subscribe((values) => {
       this.formValues = values;
+      console.log(this.formValues);
       this.update = true;
     });
   }
@@ -47,6 +48,7 @@ export class BookFormComponent implements OnInit {
     }
     if (this.update) {
       this.bookService.updateBooks(this.formValues as Book);
+      delete this.formValues.id;
       this.update = false;
       this.editBook[0] = {
         id: 0,
@@ -61,6 +63,19 @@ export class BookFormComponent implements OnInit {
     f.reset();
   }
 
+  cancelEdit(f: NgForm) {
+    f.reset();
+    this.update = false;
+    this.editBook[0] = {
+      id: 0,
+      title: '',
+      pages: 0,
+      author: '',
+      reading_status: false,
+    };
+    this.bookService.getBooks();
+  }
+
   drop(event: CdkDragDrop<Book[]>) {
     if (this.editBook[0].pages == 0) {
       transferArrayItem(
@@ -70,6 +85,8 @@ export class BookFormComponent implements OnInit {
         0
       );
       this.formValuesService.addValues(this.editBook[0]);
-    } else return;
+    } else {
+      return;
+    }
   }
 }

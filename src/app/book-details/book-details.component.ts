@@ -10,6 +10,7 @@ import { BookService } from '../book.service';
 })
 export class BookDetailsComponent implements OnInit {
   @Input() book: Book;
+  @Input() del: boolean = true;
   constructor(
     private formValues: FormValuesService,
     private bookService: BookService

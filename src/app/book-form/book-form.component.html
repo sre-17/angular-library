@@ -32,19 +32,17 @@
   <button
     mat-raised-button
     color="primary"
-    class="mx-auto d-block"
+    class="mx-auto d-block mt-3"
     *ngIf="!update"
   >
     Add
   </button>
-  <button
-    mat-raised-button
-    color="primary"
-    class="mx-auto d-block"
-    *ngIf="update"
-  >
-    Update
-  </button>
+  <div class="d-block mt-3" *ngIf="update">
+    <button mat-raised-button class="btn-danger mr-3" (click)="cancelEdit(f)">
+      Cancel
+    </button>
+    <button mat-raised-button class="">Update</button>
+  </div>
 </form>
 
 <h4>Drag cards below to edit</h4>
@@ -58,5 +56,6 @@
   <app-book-details
     *ngIf="editBook[0].pages != 0"
     [book]="editBook[0]"
+    [del]="false"
   ></app-book-details>
 </div>
