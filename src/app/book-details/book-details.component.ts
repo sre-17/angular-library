@@ -16,9 +16,9 @@ export class BookDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
-  edit(): void {
-    this.formValues.addValues(this.book);
-  }
+  // edit(): void {
+  //   this.formValues.addValues(this.book);
+  // }
   delete(): void {
     this.bookService.deleteBook(this.book);
   }

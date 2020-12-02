@@ -38,12 +38,7 @@ export class BookService {
     console.log(book);
     this.http
       .post<Book>(this.booksUrl, book, this.httpOptions)
-      // .pipe(
-      //   tap((newBook: Book) =>
-      //     console.log(`Book with id:${newBook.reading_status}`)
-      //   ),
-      //   catchError(this.handleError<Book>('addBook'))
-      // )
+      .pipe(catchError(this.handleError<Book>('addBook')))
       .subscribe((newBook: Book) => {
         console.log(newBook);
         this.bookArray.push(newBook);

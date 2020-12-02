@@ -1,5 +1,15 @@
-<div class="d-flex flex-wrap">
+<div
+  class="d-flex flex-wrap"
+  cdkDropListSortingDisabled
+  cdkDropList
+  [cdkDropListConnectedTo]="['edit-box']"
+  [cdkDropListData]="Books"
+>
   <div *ngFor="let book of Books">
-    <app-book-details [book]="book"></app-book-details>
+    <app-book-details
+      [book]="book"
+      cdkDrag
+      [cdkDragData]="book"
+    ></app-book-details>
   </div>
 </div>

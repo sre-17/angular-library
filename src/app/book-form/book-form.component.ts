@@ -3,6 +3,7 @@ import { BookService } from '../book.service';
 import { NgForm } from '@angular/forms';
 import { Book } from '../book';
 import { FormValuesService } from '../form-values.service';
+import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-book-form',
@@ -17,13 +18,23 @@ export class BookFormComponent implements OnInit {
     reading_status: false,
   };
   update = false;
+  subcription;
+  editBook: Book[] = [
+    {
+      id: 0,
+      title: '',
+      pages: 0,
+      author: '',
+      reading_status: false,
+    },
+  ];
   constructor(
     private bookService: BookService,
     private formValuesService: FormValuesService
   ) {}
 
   ngOnInit(): void {
-    this.formValuesService.formValues.subscribe((values) => {
+    this.subcription = this.formValuesService.formValues.subscribe((values) => {
       this.formValues = values;
       this.update = true;
     });
@@ -37,9 +48,28 @@ export class BookFormComponent implements OnInit {
     if (this.update) {
       this.bookService.updateBooks(this.formValues as Book);
       this.update = false;
+      this.editBook[0] = {
+        id: 0,
+        title: '',
+        pages: 0,
+        author: '',
+        reading_status: false,
+      };
     } else {
       this.bookService.addBook(this.formValues as Book);
     }
     f.reset();
+  }
+
+  drop(event: CdkDragDrop<Book[]>) {
+    if (this.editBook[0].pages == 0) {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        0
+      );
+      this.formValuesService.addValues(this.editBook[0]);
+    } else return;
   }
 }

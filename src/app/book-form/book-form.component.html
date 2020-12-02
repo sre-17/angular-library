@@ -46,3 +46,17 @@
     Update
   </button>
 </form>
+
+<h4>Drag cards below to edit</h4>
+<div
+  class="edit-area"
+  cdkDropList
+  (cdkDropListDropped)="drop($event)"
+  id="edit-box"
+  [cdkDropListData]="editBook"
+>
+  <app-book-details
+    *ngIf="editBook[0].pages != 0"
+    [book]="editBook[0]"
+  ></app-book-details>
+</div>
